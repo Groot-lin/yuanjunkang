@@ -1,0 +1,43 @@
+server:
+  port: 8090
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 100
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://49.235.84.94:3307/yuanjunkang?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+      username: root
+      password: rootroot
+  main:
+    banner-mode: off
+  redis:
+    host: 49.235.84.94
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+#mybatis:
+#  type-aliases-package: com.yuanjunkang.pojo
+#  configuration:
+#    map-underscore-to-camel-case: true
+# 开启控制台日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+ # type-aliases-package: com.yuanjunkang.pojo
+#  mapper-locations: classpath:mapper/*Mapper.xml
+  mapper-locations: classpath:com/yuanjunkang/mapper/*.xml
+#  type-aliases-package: com.yuanjunkang.pojo
+#  configuration:
+
+elasticsearch: # es数据库的ip和端口配置
+  host: 49.235.84.94
+  port: 9200
+

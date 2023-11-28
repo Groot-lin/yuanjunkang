@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanjunkang.mapper.MedicineMapper">
+    <select id="selectByName" resultType="com.yuanjunkang.pojo.Medicine">
+        <!--药品名字模糊查询-->
+        select * from medicine
+        where
+            medicinename like CONCAT('%',#{medicinename},'%')
+    </select>
+    <select id="selectByUsage" resultType="com.yuanjunkang.pojo.Medicine">
+        <!--药品用途模糊查询-->
+        select * from medicine
+        where
+        usage like CONCAT('%',#{usage},'%')
+    </select>
+    <select id="searchByPage" resultType="com.yuanjunkang.pojo.Medicine">
+        select *
+        from medicine
+        <where>
+            <if test="medicinename != null and medicinename!=''">
+                and medicinename like  concat(concat('%',#{medicinename}),'%')
+            </if>
+        </where>
+        limit #{begin},#{size}
+    </select>
+    <select id="searchAll" resultType="com.yuanjunkang.pojo.Medicine">
+        select *
+        from medicine
+        limit #{begin},#{size}
+    </select>
+    <select id="selectCountByCondition" resultType="java.lang.Integer">
+        select count(*)
+        from medicine
+        <where>
+            <if test="medicinename != null and medicinename!=''">
+                and medicinename like  concat(concat('%',#{medicinename}),'%')
+            </if>
+        </where>
+    </select>
+</mapper>
